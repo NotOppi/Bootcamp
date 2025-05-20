@@ -1,26 +1,40 @@
 -- DIFICULTAD: Muy fácil
 -- 1- Devuelve todas las películas
 
+SELECT * FROM public.movies;
 
 -- 2- Devuelve todos los géneros existentes
 
+SELECT * FROM public.genres;
 
 -- 3- Devuelve la lista de todos los estudios de grabación 
 --    que estén activos
 
+SELECT * FROM public.studios 
+WHERE STUDIO_ACTIVE = TRUE;
 
 -- 4- Devuelve una lista de los 20 últimos miembros 
 --    en anotarse a la plataforma
 
+SELECT MOVIE_DURATION, COUNT(*) AS frequency
+FROM public.movies
+GROUP BY MOVIE_DURATION
+ORDER BY frequency DESC
+LIMIT 20;
 
 -- DIFICULTAD: Fácil
 -- 5- Devuelve las 20 duraciones de películas más frecuentes, 
 --    ordenados de mayor a menor
 
+SELECT * FROM public.movies
+WHERE EXTRACT(YEAR FROM MOVIE_RELEASE_DATE) >= 2000
+AND MOVIE_NAME LIKE 'A%';
 
 -- 6- Devuelve las películas del año 2000 en adelante 
 --    que empiecen por la letra A.
 
+SELECT * FROM public.actors
+WHERE EXTRACT(MONTH FROM ACTOR_BIRTH_DATE) = 6;
 
 -- 7- Devuelve los actores nacidos un mes de Junio
 
